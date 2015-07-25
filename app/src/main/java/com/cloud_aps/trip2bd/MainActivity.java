@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -34,7 +35,10 @@ public class MainActivity extends ActionBarActivity {
 
         WebSettings myWebsettings = mWebview.getSettings();
         myWebsettings.setJavaScriptEnabled(true);
-
+        myWebsettings.setSupportZoom(true);
+        myWebsettings.setBuiltInZoomControls(true);
+        myWebsettings.setDisplayZoomControls(true);
+        myWebsettings.setUseWideViewPort(true);
         mWebview.loadUrl("http://cloud-aps.com/apex/f?p=666:1::::::");
 
         mWebview.setWebViewClient(new MyWebViewClient());
@@ -43,14 +47,7 @@ public class MainActivity extends ActionBarActivity {
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
 
-        View decorView = getWindow().getDecorView();
-// Hide the status bar.
-        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-        decorView.setSystemUiVisibility(uiOptions);
-// Remember that you should never show the action bar if the
-// status bar is hidden, so hide that too if necessary.
-        ActionBar actionBar = getActionBar();
-        actionBar.hide();
+
 
     }
 
